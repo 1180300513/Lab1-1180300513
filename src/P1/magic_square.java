@@ -1,13 +1,13 @@
 package P1;
 
 import java.io.*;
-import java.util.Set;
 
-public class magic_square {
+
+public class Magic_Square {
 
     public final int maxn = 1000;
-    public static final String FILENAME = "D:\\Program Files (x86)\\Lab1_1180300513\\Lab1-1180300513\\src\\txt\\1.txt";
-    public static final String OUTPUT_FILENAME = "D:\\Program Files (x86)\\Lab1_1180300513\\Lab1-1180300513\\src\\5.txt";
+    public static final String Filename = "D:\\Program Files (x86)\\Lab1_1180300513\\Lab1-1180300513\\src\\P1\\text\\1.txt";
+    public static final String Output_Filename = "D:\\\\Program Files (x86)\\\\Lab1_1180300513\\\\Lab1-1180300513\\\\src\\\\P1\\\\text\\\\6.txt";
 
     public boolean isLegalMagicSquare(String filename) {
         InputStreamReader reader = null;
@@ -15,6 +15,7 @@ public class magic_square {
         try {
             reader = new InputStreamReader(new FileInputStream(filename));
             br = new BufferedReader(reader);
+
             String myLine;
             try {
                 int[][] square = new int[maxn][maxn];
@@ -29,7 +30,7 @@ public class magic_square {
                     } else {
 //                        检查矩阵是否行列相等
                         if(sd_N!=tmp.length) {
-                            System.out.println("ERROR: 输入矩阵行列不相等");
+                            System.out.println("ERROR: 矩阵行列不相等");
                             return false;
                         }
                     }
@@ -37,11 +38,11 @@ public class magic_square {
                         try {
                             square[N][i] = Integer.valueOf(tmp[i]);
                             if(square[N][i]<=0) {
-                                System.out.println("ERROR: 不满足正整数要求");
+                                System.out.println("ERROR: 输入的不是正整数");
                                 return false;
                             }
                         } catch(Exception e) {
-                            System.out.println("ERROR: 不满足正整数要求||数字之间并非用\\t分割");
+                            System.out.println("ERROR: 输入的不是正整数||数字之间并非用\\t分割");
 //                            e.printStackTrace();
                             return false;
 //                            e.printStackTrace();
@@ -52,7 +53,7 @@ public class magic_square {
                 }
                 
                 if(sd_N!=N) {
-                    System.out.println("ERROR: 输入矩阵行列不相等");
+                    System.out.println("ERROR: 矩阵行列不相等");
                     return false;
                 }
 
@@ -83,7 +84,7 @@ public class magic_square {
                 }
                 if(x_sum!=sd_sum) return false;
                 if(y_sum!=sd_sum) return false;
-//                通过验证 为魔术方阵
+//                通过验证为幻方
                 return true;
             } catch (IOException e) {
                 System.out.println("ERROR: IO错误");
@@ -101,19 +102,8 @@ public class magic_square {
         return true;
     }
 
-//    奇数阶幻方最经典的填法是罗伯法。填写的方法是：
-//
-//    把1（或最小的数）放在第一行正中；按以下规律排列剩下的(n×n－1)个数：
-//            （1）每一个数放在前一个数的右上一格；
-//
-//            （2）如果这个数所要放的格已经超出了顶行那么就把它放在底行，仍然要放在右一列；
-//
-//            （3）如果这个数所要放的格已经超出了最右列那么就把它放在最左列，仍然要放在上一行；
-//
-//            （4）如果这个数所要放的格已经超出了顶行且超出了最右列，那么就把它放在底行且最左列；
-//
-//            （5）如果这个数所要放的格已经有数填入，那么就把它放在前一个数的下一行同一列的格内。
 
+    
 //   生成一个MagicSquare
     public static boolean generateMagicSquare(int n) {
 //       (2) 当输入的n不合法时（n为偶数、n为负数等），不要该函数抛出异常并非法退出，而是提示错误并“优雅的”退出——函数输出false结束。
@@ -141,13 +131,13 @@ public class magic_square {
             }
         }
 ////      打印生成的幻方
-//        for (i = 0; i < n; i++) {
-//            for (j = 0; j < n; j++)
-//                System.out.print(magic[i][j] + "\t");
-//            System.out.println();
-//        }
-//      (1) 将产生的magic square写入文件\src\P1\txt\6.txt中；
-        String filename = OUTPUT_FILENAME;
+       for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++)
+                System.out.print(magic[i][j] + "\t");
+            System.out.println();
+        }
+///      (1) 将产生的magic square写入文件\src\P1\txt\6.txt中；
+        String filename = Output_Filename;
         
         try {
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(filename));
@@ -175,12 +165,13 @@ public class magic_square {
         }
         return true;
     }
+
     public static void main(String[] args) {
-//        generateMagicSquare(11);
-        if(new magic_square().isLegalMagicSquare(FILENAME)) {
-            System.out.println("您的输入是一个MagicSquare");
+        generateMagicSquare(9);
+        if(new Magic_Square().isLegalMagicSquare(Filename)) {
+            System.out.println("此矩阵是一个幻方");
         } else {
-            System.out.println("您的输入不是一个MagicSquare");
+            System.out.println("此矩阵不是幻方");
         }
     }
 }
