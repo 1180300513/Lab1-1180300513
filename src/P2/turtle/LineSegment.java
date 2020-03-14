@@ -6,7 +6,8 @@ package P2.turtle;
 /**
  * An immutable line segment in pixel space.
  */
-public class LineSegment {
+public class LineSegment 
+{
 
     private final Point start;
     private final Point end;
@@ -21,7 +22,8 @@ public class LineSegment {
      * @param endy y-coordinate of end point
      * @param color line segment color
      */
-    public LineSegment(double startx, double starty, double endx, double endy, PenColor color) {
+    public LineSegment(double startx, double starty, double endx, double endy, PenColor color) 
+    {
         this.start = new Point(startx, starty);
         this.end = new Point(endx, endy);
         this.color = color;
@@ -34,7 +36,8 @@ public class LineSegment {
      * @param end the other end of the line segment
      * @param color line segment color
      */
-    public LineSegment(Point start, Point end, PenColor color) {
+    public LineSegment(Point start, Point end, PenColor color) 
+    {
         this.start = start;
         this.end = end;
         this.color = color;
@@ -43,21 +46,24 @@ public class LineSegment {
     /**
      * @return starting point of the line segment
      */
-    public Point start() {
+    public Point start() 
+    {
         return start;
     }
 
     /**
      * @return ending point of the line segment
      */
-    public Point end() {
+    public Point end() 
+    {
         return end;
     }
 
     /**
      * @return color of the line segment
      */
-    public PenColor color() {
+    public PenColor color() 
+    {
         return color;
     }
 
@@ -66,7 +72,8 @@ public class LineSegment {
      * 
      * @return the length of the line segment
      */
-    public double length() {
+    public double length() 
+    {
         return Math.sqrt(Math.pow(this.start.x() - this.end.x(), 2.0)
                          + Math.pow(this.start.y() - this.end.y(), 2.0));
     }

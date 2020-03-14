@@ -27,13 +27,15 @@ import P2.turtle.Action.ActionType;
 /**
  * Displays turtle graphics in a window on the screen.
  */
-public class TurtleGUI extends JFrame {
+public class TurtleGUI extends JFrame 
+{
 
     private static final long serialVersionUID = 1L;
 
     private static final Color CANVAS_BG_COLOR = Color.WHITE;
     private static final Map<PenColor, Color> PEN_COLORS = new EnumMap<>(PenColor.class);
-    static {
+    static 
+    {
         PEN_COLORS.put(PenColor.BLACK, Color.BLACK);
         PEN_COLORS.put(PenColor.GRAY, Color.GRAY);
         PEN_COLORS.put(PenColor.RED, Color.RED);
@@ -76,7 +78,8 @@ public class TurtleGUI extends JFrame {
      * @param canvasWidth canvas width in pixels
      * @param canvasHeight canvas height in pixels
      */
-    public TurtleGUI(List<Action> actionList, int canvasWidth, int canvasHeight) {
+    public TurtleGUI(List<Action> actionList, int canvasWidth, int canvasHeight) 
+    {
         super("TurtleGUI");
 
         this.actionList = actionList;
@@ -104,17 +107,22 @@ public class TurtleGUI extends JFrame {
 
         stoppedAnimation(); // initialize interface elements
 
-        runButton.addActionListener(new ActionListener() {
+        runButton.addActionListener(new ActionListener() 
+        {
             
             private AnimationThread animationThread;
             
-            public void actionPerformed(ActionEvent e) {
-                if (!isRunning) {
+            public void actionPerformed(ActionEvent e) 
+            {
+                if (!isRunning) 
+                {
                     runButton.setText("Stop");
                     isRunning = true;
                     animationThread = new AnimationThread();
                     animationThread.execute();
-                } else {
+                } 
+                else 
+                {
                     animationThread.cancel(true);
                 }
             }
@@ -136,25 +144,30 @@ public class TurtleGUI extends JFrame {
         pack();
     }
 
-    private void stoppedAnimation() {
+    private void stoppedAnimation()
+    {
         currentAction.setText("STOPPED");
         isRunning = false;
         runButton.setText("Run!");
     }
 
-    private void showCurrentAction(String s) {
+    private void showCurrentAction(String s)
+    {
         currentAction.setText(s);
     }
 
-    private class AnimationThread extends SwingWorker<Void, Void> {
+    private class AnimationThread extends SwingWorker<Void, Void>
+    {
 
         @Override
-        protected Void doInBackground() {
+        protected Void doInBackground() 
+        {
             animate();
             return null;
         }
 
-        private void animate() {
+        private void animate() 
+        {
             graphics.clearRect(0, 0, canvasWidth, canvasHeight);
             drawLabel.repaint();
 
@@ -162,10 +175,14 @@ public class TurtleGUI extends JFrame {
             // in order to allocate draw time proportionally
 
             double totalLength = 0;
-            for (Action a : actionList) {
-                if (a.type() == ActionType.TURN) {
+            for (Action a : actionList) 
+            {
+                if (a.type() == ActionType.TURN) 
+                {
                     totalLength += LENGTH_OF_A_TURN;
-                } else if (a.type() == ActionType.FORWARD) {
+                } 
+                else if (a.type() == ActionType.FORWARD) 
+                {
                     totalLength += a.lineSegment().length();
                 }
             }
@@ -174,24 +191,33 @@ public class TurtleGUI extends JFrame {
 
             double cumulativeLength = 0;
             long initialTime = System.currentTimeMillis();
-            for (int i = 0; i < actionList.size(); i++) {
-                if (isCancelled()) {
+            for (int i = 0; i < actionList.size(); i++) 
+            {
+                if (isCancelled()) 
+                {
                     break;
                 }
                 Action action = actionList.get(i);
                 showCurrentAction((i + 1) + ". " + action);
-                if (action.lineSegment() != null) {
+                if (action.lineSegment() != null) 
+                {
                     long startTime = (long) (initialTime + cumulativeLength / totalLength * MILLIS_PER_DRAWING);
                     cumulativeLength += action.lineSegment().length();
                     long endTime = (long) (initialTime + cumulativeLength / totalLength * MILLIS_PER_DRAWING);
                     draw(action.lineSegment(), startTime, endTime);
-                } else {
+                } 
+                else 
+                {
                     cumulativeLength += LENGTH_OF_A_TURN;
                     double drawTime = (initialTime + cumulativeLength / totalLength * MILLIS_PER_DRAWING - System.currentTimeMillis());
-                    if (drawTime > 0) {
-                        try {
+                    if (drawTime > 0) 
+                    {
+                        try 
+                        {
                             Thread.sleep((long) drawTime);
-                        } catch (InterruptedException ie) {
+                        } 
+                        catch (InterruptedException ie) 
+                        {
                         }
                     }
                 }
@@ -199,7 +225,8 @@ public class TurtleGUI extends JFrame {
             stoppedAnimation();
         }
 
-        private void draw(LineSegment lineSeg, long initialTime, long endTime) {
+        private void draw(LineSegment lineSeg, long initialTime, long endTime) 
+        {
             long drawTime = endTime - initialTime;
 
             double initX = originX + lineSeg.start().x();
@@ -216,7 +243,8 @@ public class TurtleGUI extends JFrame {
 
             graphics.setPaint(PEN_COLORS.getOrDefault(lineSeg.color(), Color.BLACK));
 
-            while (!abort && elapsedTime + MILLIS_PER_FRAME < drawTime) {
+            while (!abort && elapsedTime + MILLIS_PER_FRAME < drawTime) 
+            {
                 // while we have time remaining for this action
                 double fractionDone = Math.max(elapsedTime * 1.0 / drawTime, 0);
                 int toX = (int) Math.round(initX * (1 - fractionDone) + finalX * fractionDone);
@@ -224,9 +252,12 @@ public class TurtleGUI extends JFrame {
                 graphics.drawLine(fromX, fromY, toX, toY);
                 drawLabel.repaint();
 
-                try {
+                try 
+                {
                     Thread.sleep(MILLIS_PER_FRAME);
-                } catch (InterruptedException ie) {
+                } 
+                catch (InterruptedException ie) 
+                {
                     abort = true;
                 }
 
@@ -238,7 +269,8 @@ public class TurtleGUI extends JFrame {
             }
 
             // finish the line if we're still not done
-            if (!abort && (fromX != finalX || fromY != finalY)) {
+            if (!abort && (fromX != finalX || fromY != finalY)) 
+            {
                 graphics.drawLine(fromX, fromY, (int) finalX, (int) finalY);
                 drawLabel.repaint();
             }

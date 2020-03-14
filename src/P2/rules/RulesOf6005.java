@@ -7,7 +7,8 @@ package P2.rules;
  * RulesOf6005 represents the collaboration policy of 6.005 as described by the
  * general information on Stellar.
  */
-public class RulesOf6005 {
+public class RulesOf6005 
+{
      
     /**
      * Judge whether a given piece of code may be used in an assignment (problem
@@ -34,7 +35,8 @@ public class RulesOf6005 {
      */
     public static boolean mayUseCodeInAssignment(boolean writtenByYourself,
             boolean availableToOthers, boolean writtenAsCourseWork,
-            boolean citingYourSource, boolean implementationRequired) {
+            boolean citingYourSource, boolean implementationRequired) 
+    {
         
         // TODO: Fill in this method, then remove the exception
         
@@ -48,7 +50,8 @@ public class RulesOf6005 {
      * 
      * @param args unused
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         System.out.println("You may certainly use code you wrote yourself: " +
             RulesOf6005.mayUseCodeInAssignment(true, false, true, true, true));
     }

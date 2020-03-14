@@ -6,12 +6,14 @@ package P2.turtle;
 /**
  * An immutable drawable turtle action.
  */
-public class Action {
+public class Action 
+{
 
     /**
      * Enumeration of turtle action types.
      */
-    public enum ActionType {
+    public enum ActionType 
+    {
         FORWARD, TURN, COLOR
     }
 
@@ -25,7 +27,8 @@ public class Action {
      * @param displayString text that describes the action
      * @param lineSeg line segment associated with the action, may be null
      */
-    public Action(ActionType type, String displayString, LineSegment lineSeg) {
+    public Action(ActionType type, String displayString, LineSegment lineSeg) 
+    {
         this.type = type;
         this.displayString = displayString;
         this.lineSegment = lineSeg;
@@ -34,19 +37,22 @@ public class Action {
     /**
      * @return type of this action
      */
-    public ActionType type() {
+    public ActionType type() 
+    {
         return type;
     }
 
     @Override
-    public String toString() {
+    public String toString() 
+    {
         return displayString;
     }
 
     /**
      * @return line segment associated with this action, or null if none
      */
-    public LineSegment lineSegment() {
+    public LineSegment lineSegment() 
+    {
         return lineSegment;
     }
 }

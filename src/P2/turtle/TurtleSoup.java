@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.lang.Math;
 
-public class TurtleSoup {
+public class TurtleSoup 
+{
 
 	/**
 	 * Draw a square.
@@ -17,7 +18,8 @@ public class TurtleSoup {
 	 * @param sideLength
 	 *            length of each side
 	 */
-	public static void drawSquare(Turtle turtle, int sideLength) {
+	public static void drawSquare(Turtle turtle, int sideLength) 
+	{
 		// throw new RuntimeException("implement me!");
 		// turtle = new DrawableTurtle();
 		turtle.forward(sideLength);
@@ -40,7 +42,8 @@ public class TurtleSoup {
 	 *            number of sides, where sides must be > 2
 	 * @return angle in degrees, where 0 <= angle < 360
 	 */
-	public static double calculateRegularPolygonAngle(int sides) {
+	public static double calculateRegularPolygonAngle(int sides) 
+	{
 		// throw new RuntimeException("implement me!");
 		return (sides - 2) * 180.00 / sides;
 	}
@@ -58,7 +61,8 @@ public class TurtleSoup {
 	 *            size of interior angles in degrees, where 0 < angle < 180
 	 * @return the integer number of sides
 	 */
-	public static int calculatePolygonSidesFromAngle(double angle) {
+	public static int calculatePolygonSidesFromAngle(double angle) 
+	{
 		// throw new RuntimeException("implement me!");
 		// System.out.println((360/(180.00-angle)));
 		return (int) (360 / (180.00 - angle) + 0.5);
@@ -77,11 +81,13 @@ public class TurtleSoup {
 	 * @param sideLength
 	 *            length of each side
 	 */
-	public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
+	public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) 
+	{
 		// throw new RuntimeException("implement me!");
 		turtle.forward(sideLength);
 		double degrees = 360.00 / sides;
-		for (int i = 1; i < sides; i++) {
+		for (int i = 1; i < sides; i++) 
+		{
 			turtle.turn(degrees);
 			turtle.forward(sideLength);
 		}
@@ -114,7 +120,8 @@ public class TurtleSoup {
 	 *         must be 0 <= angle < 360
 	 */
 	public static double calculateHeadingToPoint(double currentHeading, int currentX, int currentY, int targetX,
-			int targetY) {
+			int targetY) 
+	{
 		// throw new RuntimeException("implement me!");
 		if(currentX == targetX && currentY == targetY)
 			return 0.0;
@@ -147,12 +154,14 @@ public class TurtleSoup {
 	 * @return list of heading adjustments between points, of size 0 if (# of
 	 *         points) == 0, otherwise of size (# of points) - 1
 	 */
-	public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) {
+	public static List<Double> calculateHeadings(List<Integer> xCoords, List<Integer> yCoords) 
+	{
 		// throw new RuntimeException("implement me!");
 		List<Double> ans = new ArrayList<>();
 		int length = xCoords.size();
 		double temp = 0;
-		for (int i = 1; i < length; i++) {
+		for (int i = 1; i < length; i++) 
+		{
 			temp = calculateHeadingToPoint(temp, xCoords.get(i - 1), yCoords.get(i - 1), xCoords.get(i),
 					yCoords.get(i));
 			ans.add(temp);
@@ -170,7 +179,8 @@ public class TurtleSoup {
 	 * @param turtle
 	 *            the turtle context
 	 */
-	public static void drawPersonalArt(Turtle turtle) {
+	public static void drawPersonalArt(Turtle turtle) 
+	{
 		// throw new RuntimeException("implement me!");
 		// turtle.color(PenColor.ORANGE);
 		// for(int i = 0;i<50;i++){
@@ -178,7 +188,8 @@ public class TurtleSoup {
 		// turtle.turn(123);
 		// }
 		// turtle.forward(120);
-		for (int i = 0; i < 600; i++) {
+		for (int i = 0; i < 600; i++) 
+		{
 			turtle.forward(i);
 			if (i < 100)
 				turtle.color(PenColor.YELLOW);
@@ -190,7 +201,8 @@ public class TurtleSoup {
 				turtle.color(PenColor.RED);
 			else if (i < 500)
 				turtle.color(PenColor.ORANGE);
-			else {
+			else 
+			{
 				turtle.color(PenColor.BLUE);
 			}
 			turtle.turn(91);
@@ -205,7 +217,8 @@ public class TurtleSoup {
 	 * @param args
 	 *            unused
 	 */
-	public static void main(String args[]) {
+	public static void main(String args[]) 
+	{
 		DrawableTurtle turtle = new DrawableTurtle();
 
 //		 drawSquare(turtle, 40);

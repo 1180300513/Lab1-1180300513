@@ -12,7 +12,8 @@ package P2.turtle;
  * 
  * You may not modify this interface.
  */
-public interface Turtle {
+public interface Turtle 
+{
 
     /**
      * Move the turtle forward a number of steps.

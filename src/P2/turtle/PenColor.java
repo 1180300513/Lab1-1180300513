@@ -8,7 +8,8 @@ package P2.turtle;
  * 
  * You may not modify this enumeration.
  */
-public enum PenColor {
+public enum PenColor 
+{
     BLACK,
     GRAY,
     RED,
